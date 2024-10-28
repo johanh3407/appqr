@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title size="large">Cambiar Contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>CREDENCIALES</ion-card-title>
+      <ion-card-subtitle>Ingrese su nombre de usuario para cambiar la contraseña</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label position="floating">Nombre de Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="nombreUsuario" placeholder=""></ion-input>
+      </ion-item>
+
+
+      <ion-button expand="full" (click)="verificarUsuario()">Verificar Usuario</ion-button>
+
+
+      <ion-text color="danger" *ngIf="usuarioNoEncontrado">Nombre de usuario no encontrado.</ion-text>
+      <ion-text color="danger" *ngIf="nombreUsuario.trim() === '' && mostrarMensajeNoIngreso">No se ingresó ningún nombre de usuario.</ion-text>
+
+
+      <ion-item *ngIf="usuarioValido">
+        <ion-label position="floating">Nueva Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="nuevaContrasena" placeholder="">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+      </ion-item>
+
+
+      <ion-button *ngIf="usuarioValido" expand="full" (click)="cambiarContrasena()">Cambiar Contraseña</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

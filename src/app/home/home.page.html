@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>DUOC UC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Inicio</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>CREDENCIALES</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-input type="email" label="Correo :" [(ngModel)]="correo" placeholder="Ingrese su correo"></ion-input>
+      <ion-input type="password" label="Contraseña :" [(ngModel)]="contrasena" placeholder="Ingrese su contraseña">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+
+      <ion-button (click)="validarCampos()">Validar</ion-button>
+      <ion-button (click)="CambiarPass()" >Restablecer Contraseña</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
