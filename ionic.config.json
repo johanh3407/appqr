@@ -1,0 +1,7 @@
+{
+  "name": "pruebaapk",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

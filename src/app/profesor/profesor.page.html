@@ -1,0 +1,69 @@
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="menu-title">Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item [routerLink]="['/profesorioni']" lines="full">
+        <ion-icon slot="start" name="home" color="light"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-item>
+      <ion-item [routerLink]="['/openweather']" lines="full">
+        <ion-icon slot="start" name="cloud" color="light"></ion-icon>
+        <ion-label>Clima</ion-label>
+      </ion-item>
+      <ion-item (click)="cerrarSesion()" lines="none">
+        <ion-icon slot="start" name="log-out" color="danger"></ion-icon>
+        <ion-label>Cerrar Sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main-content"></ion-router-outlet>
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="header-title">Generar QR</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Generar Código QR</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Asignatura</ion-label>
+        <ion-select [(ngModel)]="asignaturaSeleccionada" placeholder="Selecciona una asignatura">
+          <ion-select-option *ngFor="let asignatura of asignaturas" [value]="asignatura">
+            {{ asignatura }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-text color="danger" *ngIf="!asignaturaSeleccionada">
+        Debes seleccionar una asignatura antes de generar el QR.
+      </ion-text>
+
+      <ion-button expand="block" (click)="generarQR()" [disabled]="!asignaturaSeleccionada">
+        Generar QR
+      </ion-button>
+
+      <div *ngIf="codigoQR" class="qr-container">
+        <ion-label>Código QR generado:</ion-label>
+        <div class="qr-code">
+          <img [src]="codigoQR" alt="Código QR">
+        </div>
+        <p>Asignatura: {{ asignaturaSeleccionada }}</p>
+        <p>Generado el: {{ fechaGeneracion }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
